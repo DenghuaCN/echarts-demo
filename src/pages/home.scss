@@ -1,0 +1,372 @@
+@import "../shared/helper";
+
+%legend {
+  height: px(40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-right: px(10);
+
+  >span {
+    display: inline-block;
+    width: px(16);
+    height: px(10);
+    border-radius: px(2);
+    margin: 0 px(10);
+  }
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: white;
+  background: #010310;
+  font-size: px(16);
+
+  >header {
+    margin: 0 auto;
+    width: px(2420);
+    height: px(99);
+    background-size: cover;
+    color: #fff;
+    font-size: px(50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  >main {
+    margin: 0 auto;
+    width: px(2420);
+    flex: 1;
+    display: grid;
+    grid-template:
+      "box1 box2 box4 box5" 755fr
+      "box3 box3 box4 box5" 363fr / 366fr 361fr 811fr 747fr
+    ;
+    column-gap: px(28);
+    row-gap: px(28);
+    padding: px(30) px(30) px(30) px(30);
+
+    >section {
+      text-align: center;
+    }
+
+    .bordered {
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 0 2px 0 #0f3361 inset 0 0 2px 0 #0f3361;
+      border: 1px solid #0764bc;
+      background: #0f113a;
+
+      &::before {
+        pointer-events: none;
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        border-radius: 4px;
+        box-shadow:
+          17px 0 0 -16px #0f3361,
+          -17px 0 0 -16px #0f3361,
+          0 17px 0 -16px #0f3361,
+          0 -17px 0 -16px #0f3361,
+          9px 0 0 -8px #0d4483,
+          -9px 0 0 -8px #0d4483,
+          0 9px 0 -8px #0d4483,
+          0 -9px 0 -8px #0d4483,
+
+      }
+    }
+
+    >.section1 {
+      grid-area: box1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    >.section2 {
+      grid-area: box2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    >.section3 {
+      grid-area: box3;
+    }
+
+    >.section4 {
+      grid-area: box4;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    >.section5 {
+      grid-area: box5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      >.row1 {
+        height: px(340);
+      }
+
+      >.row2 {
+        height: px(350);
+      }
+
+      >.row3 {
+        height: px(455);
+      }
+    }
+
+    @mixin common-chart-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h2 {
+        flex-shrink: 0;
+        border: 1px solid #0a5299;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        font-size: px(22);
+        line-height: px(24);
+        padding: px(10) px(28);
+        text-shadow: 0 0 px(3) white;
+      }
+
+      .charts {
+        width: 100%;
+        flex: 1;
+        display: flex;
+      }
+
+      .chart {
+        flex: 1;
+        width: 100%;
+      }
+
+    }
+
+    // 柱状图1
+    .chart1-box {
+      height: px(365);
+
+      @include common-chart-box;
+    }
+
+    // 柱状图2
+    .chart2-box {
+      height: px(400);
+
+      @include common-chart-box();
+
+      .legend {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        padding: 0 px(20) px(10);
+        font-size: px(18);
+
+        >.first,
+        >.second {
+          display: inline-block;
+          border-radius: px(2);
+          width: px(24);
+          height: px(12);
+          background: red;
+          margin: 0 px(10);
+        }
+
+        .first {
+          background: linear-gradient(90deg, #2034f9 0%, #04a1ff 100%);
+        }
+
+        .second {
+          background: linear-gradient(90deg, #b92ae8 0%, #6773e7 100%);
+        }
+      }
+    }
+
+    // 折线图
+    .chart3-box {
+      height: px(410);
+      @include common-chart-box;
+    }
+
+    // 折线图2
+    .chart4-box {
+      height: px(355);
+      @include common-chart-box;
+    }
+
+    // 表格
+    .chart5-table,
+    .chart-right-group3 {
+      @include common-chart-box;
+      padding: 0 px(24);
+
+      >table {
+        width: 100%;
+        table-layout: fixed;
+        margin-top: px(25);
+        border-collapse: collapse;
+
+        th,
+        td {
+          border: 1px solid #1a3671;
+        }
+
+        thead {
+          th {
+            height: px(70);
+            box-shadow: inset 0 0 px(60) 0 #1f3d85;
+          }
+        }
+
+        tbody {
+          td {
+            height: px(50);
+            width: px(84);
+            background: #1c2456;
+          }
+
+        }
+      }
+    }
+
+    // 地图
+    .chart6-map {
+      @include common-chart-box;
+      height: px(753);
+      background: transparent;
+
+      >.wrapper {
+        position: relative;
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .chart {
+          flex: 1;
+        }
+      }
+    }
+
+    // chart7,8,9
+    .chart-bottom {
+      @include common-chart-box;
+      display: flex;
+      flex-direction: column;
+      height: px(420);
+
+      >.charts {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        padding: px(20);
+      }
+
+      &-group1,
+      &-group2,
+      &-group3 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      &-group1,
+      &-group2 {
+
+        .legend {
+          @extend %legend;
+
+          .male {
+            background: #33a4fa;
+          }
+
+          .female {
+            background: #8d70f8;
+          }
+        }
+
+        .chart {
+          position: relative;
+          display: flex;
+
+          >.main {
+            flex: 1;
+          }
+
+          >.text {
+            position: absolute;
+            top: 43%;
+            left: 49%;
+            transform: translate(-50%, -50%);
+            color: #33a4fa;
+            // color: #fff;
+            font-size: px(32);
+            text-shadow: 0 0 px(20) #33a4fa;
+            font-weight: bold;
+          }
+        }
+      }
+
+      &-group2 {
+        width: px(290);
+        flex-shrink: 0;
+
+        .legend {
+          justify-content: flex-start;
+        }
+      }
+
+      &-group3 {
+        border: 1px solid #08397d;
+
+        h3 {
+          font-size: px(20);
+          color: #7ab6db;
+          margin-top: px(6);
+        }
+      }
+    }
+
+    .chart-right-group1,
+    .chart-right-group2,
+    .chart-right-group3 {
+      @include common-chart-box;
+    }
+
+    .chart11,
+    .chart12 {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      >.chart {
+        display: flex;
+
+        >.main {
+          flex: 1
+        }
+      }
+    }
+
+    .chart-right-group3 {
+
+    }
+
+  }
+
+}

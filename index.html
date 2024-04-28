@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
+    <title>大屏可视化项目</title>
+    <script>
+      const clientWidth = document.documentElement.clientWidth;
+      const clientHeight = document.documentElement.clientHeight;
+
+      window.pageWidth; // 页面宽度
+      if (clientWidth / clientHeight >= 16 / 9) {
+        // 横屏类
+        pageWidth = clientHeight * (16 / 9);
+      } else if (clientWidth / clientHeight < 16 / 9) {
+        // 竖屏类
+        pageWidth = clientWidth;
+      }
+      window.pageHeight = pageWidth / (16 / 9); // 页面高度
+
+      // 设置根元素font-size大小，统一REM单位。将页面宽度分为100个REM
+      const string = `<style>html{font-size: ${pageWidth / 100}px}</style>`;
+      console.log(string);
+      document.write(string);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // root.style.width = pageWidth + 'px'
+      root.style.height = pageHeight + "px";
+      root.style.marginTop = (clientHeight - pageHeight) / 2 + "px";
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
